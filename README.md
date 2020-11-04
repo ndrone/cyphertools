@@ -11,7 +11,7 @@ Cypher Tools is a python application that I am writing to help with deciphering 
 
 Before you begin, ensure you have met the following requirements:
 * You have installed Python 3.9
-** this may run on 3.0 version but I wrote it with 3.9
+** this may run on 3.0 version, but I wrote it with 3.9
 
 ## Installing Cypher Tools
 
