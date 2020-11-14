@@ -2,6 +2,7 @@ import pathlib
 import re
 
 from history import History
+from substitution import Substitution
 
 
 def main():
@@ -12,6 +13,7 @@ def main():
     Press '3' to print history to screen
     Press '4' to write history to file *warning this clears the history
     Press '5' to search for a pattern and print counts to screen
+    Press '6' to do substitution
     Press 'x' to exit
     selection: """
 
@@ -22,6 +24,7 @@ def main():
     cipher_text_list = []
     # keep a history of changes for further analysis later
     history = History()
+    substitution = Substitution()
     selection = ""
     while selection != "x":
         selection = input(menu)
@@ -34,6 +37,7 @@ def main():
         if selection == "2":
             cipher_text_list = file_contents
             history.append("resetting cipher to", str(cipher_text_list))
+            substitution = Substitution()
             print("Done")
         if selection == "3":
             history.display()
@@ -41,13 +45,13 @@ def main():
             history.save(input("output file to save to: "))
         if selection == "5":
             find_pattern(cipher_text_list, history)
+        if selection == "6":
+            cipher_text_list = substitution.do_substitution(cipher_text_list, history)
 
 
 def load_file(file_name):
     file = open(file_name, "r")
-    file_lines = []
-    for line in file.readline():
-        file_lines.append(line)
+    file_lines = file.readlines()
     file.close()
     return file_lines
 
