@@ -6,8 +6,8 @@ class Substitution:
     def do_substitution(self, encrypted_text_list, history):
         print("current substitution cipher" + str(self.substitution_key))
 
-        search = input("Enter search term:")
-        replace = input("Enter replacement term:")
+        search = input("Enter search term: ")
+        replace = input("Enter replacement term: ")
         self.substitution_key[search] = replace
         history.append("Updating substitution cipher", str(self.substitution_key))
 
