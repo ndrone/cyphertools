@@ -29,12 +29,11 @@ def main():
     while selection != "x":
         selection = input(menu)
         if selection == "1":
-            input_file_name = input("Enter file name to load relative from {}: ".format(pathlib.Path().absolute()))
-            file_contents = load_file(input_file_name)
+            file_contents = load_file(history)
             cipher_text_list = file_contents
-            history.append("load file {}".format(input_file_name), str(file_contents))
             print("Done")
         if selection == "2":
+            # reset everything but history
             cipher_text_list = file_contents
             history.append("resetting cipher to", str(cipher_text_list))
             substitution = Substitution()
@@ -49,10 +48,12 @@ def main():
             cipher_text_list = substitution.do_substitution(cipher_text_list, history)
 
 
-def load_file(file_name):
-    file = open(file_name, "r")
+def load_file(history):
+    input_file_name = input("Enter file name to load relative from {}: ".format(pathlib.Path().absolute()))
+    file = open(input_file_name, "r")
     file_lines = file.readlines()
     file.close()
+    history.append("load file {}".format(input_file_name), str(file_lines))
     return file_lines
 
 
