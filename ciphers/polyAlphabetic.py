@@ -53,11 +53,8 @@ selection: """
                 # Get the character value so we can do math
                 c_value = self.alpha[c]
                 k_value = self.alpha[self.key[key_index]]
-                total = c_value + k_value
-                # if the total is above or dictionary subtract the dictionary till it is within
-                # range
-                while total > 25:
-                    total = total - 25
+                # decrypt
+                total = (c_value - k_value) % 26
 
                 # Now that our total is within range of the dictionary values
                 # loop through to find the value that matches, and get the key (the character)
